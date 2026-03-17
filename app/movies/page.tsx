@@ -1,9 +1,10 @@
 import Pagination from "@/app/components/Pagination";
 import Search from "@/app/components/Search";
 import Link from "next/link";
-import { fetchMovies } from "../lib/data";
-import { RESULTS_PER_PAGE } from "../lib/constants";
-import { Movie } from "../lib/types";
+import { fetchMovies } from "@/app/lib/data";
+import { RESULTS_PER_PAGE } from "@/app/lib/constants";
+import { Movie } from "@/app/lib/types";
+import SavedForLaterButton from "../components/SavedForLaterButton";
 
 export default async function Page(props: {
   searchParams?: Promise<{
@@ -24,10 +25,14 @@ export default async function Page(props: {
       <div className="bg-gray-900 min-h-screen text-white font-sans">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
           <div className="mb-8 md:mb-12">
-            <h1 className="text-3xl md:text-4xl font-bold text-white border-l-4 border-yellow-400 pl-4">
-              Movies
-            </h1>
-
+            <div className="flex items-center">
+              <h1 className="text-3xl md:text-4xl font-bold text-white border-l-4 border-yellow-400 pl-4">
+                Movies
+              </h1>
+              <div className="ml-auto">
+                <SavedForLaterButton />
+              </div>
+            </div>
             <p className="text-gray-400 mt-2 pl-5">
               Let's go to the movies! Enter your movie title below.
             </p>
@@ -60,10 +65,14 @@ export default async function Page(props: {
       <div className="bg-gray-900 min-h-screen text-white font-sans">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
           <div className="mb-8 md:mb-12">
-            <h1 className="text-3xl md:text-4xl font-bold text-white border-l-4 border-yellow-400 pl-4">
-              Movies
-            </h1>
-
+            <div className="flex items-center">
+              <h1 className="text-3xl md:text-4xl font-bold text-white border-l-4 border-yellow-400 pl-4">
+                Movies
+              </h1>
+              <div className="ml-auto">
+                <SavedForLaterButton />
+              </div>
+            </div>
             <p className="text-gray-400 mt-2 pl-5">
               An error has been returned by the OMDb API:{" "}
               {moviesSearchResponse.Error}. Please try another search.
@@ -81,9 +90,14 @@ export default async function Page(props: {
     <div className="bg-gray-900 min-h-screen text-white font-sans">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <div className="mb-8 md:mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-white border-l-4 border-yellow-400 pl-4">
-            Movies
-          </h1>
+          <div className="flex items-center">
+            <h1 className="text-3xl md:text-4xl font-bold text-white border-l-4 border-yellow-400 pl-4">
+              Movies
+            </h1>
+            <div className="ml-auto">
+              <SavedForLaterButton />
+            </div>
+          </div>
           {totalResults && (
             <p className="text-gray-400 mt-2 pl-5">
               Found {totalResults} results

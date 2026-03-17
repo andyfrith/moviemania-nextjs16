@@ -73,7 +73,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
         <SearchIcon className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 transition-colors peer-focus:text-yellow-400" />
       </div>
 
-      {/* <div className="relative w-full md:w-48">
+      <div className="relative w-full md:w-48">
         <label htmlFor="type" className="sr-only">
           Type
         </label>
@@ -98,7 +98,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
             />
           </svg>
         </div>
-      </div> */}
+      </div>
 
       <div className="relative w-full md:w-36">
         <label htmlFor="year" className="sr-only">

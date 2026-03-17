@@ -1,6 +1,12 @@
+import { cookies } from "next/headers";
+import { Movie } from "@/app/lib/types";
 import { notFound } from "next/navigation";
 import { fetchMovie } from "@/app/lib/data";
 import BackButton from "@/app/components/BackButton";
+import SaveForLaterButton from "@/app/components/SaveForLaterButton";
+import RemoveSaveForLaterButton from "@/app/components/RemoveSaveForLaterButton";
+import SavedForLaterButton from "@/app/components/SavedForLaterButton";
+import { getSavedForLater } from "@/app/lib/actions";
 
 export default async function Page(props: {
   params: Promise<{ imdbID: string }>;
@@ -8,13 +14,32 @@ export default async function Page(props: {
   const params = await props.params;
   const imdbID = params.imdbID;
   const movie = await fetchMovie(imdbID);
+  const savedForLater = await getSavedForLater();
+
+  // console.log("savedForLater", savedForLater);
+
+  const movies =
+    savedForLater &&
+    savedForLater.length > 0 &&
+    (savedForLater.map((movie) => movie && JSON.parse(movie)) as Array<Movie>);
+
+  // console.log("movies", movies);
 
   if (!movie) {
     notFound();
   }
   return (
     <main>
-      <BackButton />
+      <div className="flex">
+        <BackButton />
+        <SavedForLaterButton />
+        {movies && movies.filter((m) => m.imdbID === imdbID).length > 0 ? (
+          <RemoveSaveForLaterButton movie={movie} />
+        ) : (
+          <SaveForLaterButton movie={movie} />
+        )}
+      </div>
+      {/* <SavedForLater /> */}
       <div className="bg-gray-900 min-h-screen text-white font-sans">
         <div
           className="relative h-96 w-full bg-cover bg-center"

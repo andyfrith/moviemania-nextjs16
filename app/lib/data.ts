@@ -9,7 +9,7 @@ export async function fetchMovies(
   try {
     const res = await fetch(
       process.env.OMDb_API_URL +
-        `&s=${s}&type=movie&page=${currentPage}` +
+        `&s=${s}&page=${currentPage}` +
         (y && `&y=${y}`) +
         (type && `&type=${type}`),
     );
