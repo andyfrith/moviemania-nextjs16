@@ -7,6 +7,7 @@ import SaveForLaterButton from "@/app/components/SaveForLaterButton";
 import RemoveSaveForLaterButton from "@/app/components/RemoveSaveForLaterButton";
 import SavedForLaterButton from "@/app/components/SavedForLaterButton";
 import { getSavedForLater } from "@/app/lib/actions";
+import MoviesHeader from "@/app/components/MoviesHeader";
 
 export default async function Page(props: {
   params: Promise<{ imdbID: string }>;
@@ -16,30 +17,28 @@ export default async function Page(props: {
   const movie = await fetchMovie(imdbID);
   const savedForLater = await getSavedForLater();
 
-  // console.log("savedForLater", savedForLater);
-
   const movies =
     savedForLater &&
     savedForLater.length > 0 &&
     (savedForLater.map((movie) => movie && JSON.parse(movie)) as Array<Movie>);
 
-  // console.log("movies", movies);
-
   if (!movie) {
     notFound();
   }
+
   return (
-    <main>
-      <div className="flex">
-        <BackButton />
-        <SavedForLaterButton />
-        {movies && movies.filter((m) => m.imdbID === imdbID).length > 0 ? (
-          <RemoveSaveForLaterButton movie={movie} />
-        ) : (
-          <SaveForLaterButton movie={movie} />
-        )}
-      </div>
-      {/* <SavedForLater /> */}
+    <>
+      <MoviesHeader
+        buttons={[
+          <BackButton />,
+          <SavedForLaterButton />,
+          movies && movies.filter((m) => m.imdbID === imdbID).length > 0 ? (
+            <RemoveSaveForLaterButton movie={movie} />
+          ) : (
+            <SaveForLaterButton movie={movie} />
+          ),
+        ]}
+      />
       <div className="bg-gray-900 min-h-screen text-white font-sans">
         <div
           className="relative h-96 w-full bg-cover bg-center"
@@ -128,6 +127,6 @@ export default async function Page(props: {
           </div>
         </div>
       </div>
-    </main>
+    </>
   );
 }
