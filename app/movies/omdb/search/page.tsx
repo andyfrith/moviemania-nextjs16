@@ -4,7 +4,7 @@ import client from "@/app/lib/omdb/client";
 import { RESULTS_PER_PAGE } from "@/app/lib/constants";
 import { Movie } from "@/app/lib/types";
 import MoviesHeader from "@/app/components/movies/Header";
-import MovieItems from "../components/MovieItems";
+import MovieItems from "@/app/components/movies/omdb/MovieItems";
 
 export default async function Page(props: {
   searchParams?: Promise<{

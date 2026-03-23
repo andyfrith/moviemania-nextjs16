@@ -1,7 +1,29 @@
 "use server";
 
 import { cookies } from "next/headers";
+import { ollamaAI } from "@/app/lib/ai/ollama/service";
+import type {
+  MovieAnalysisResponse,
+  MovieWatchAnalysisResponse,
+} from "@/app/lib/ai/google/types";
 import { Movie } from "./types";
+
+/**
+ * Runs Ollama on the server only (Node APIs; not usable in the browser bundle).
+ */
+export async function generateOllamaMovieAnalysis(
+  title: string,
+): Promise<MovieAnalysisResponse> {
+  return ollamaAI.generateMovieAnalysis(title);
+}
+
+export async function generateOllamaMovieWatchAnalysis(
+  mood: string[],
+  genres: string[],
+  title: string,
+): Promise<MovieWatchAnalysisResponse> {
+  return ollamaAI.generateMovieWatchAnalysis({ mood, genres, title });
+}
 
 export async function saveForLater(movie: Movie) {
   const cookieStore = await cookies();
@@ -59,5 +81,8 @@ export async function getSavedForLater() {
     return null;
   }
 
-  return cookieStore.get("movies")?.value.split("|");
+  return cookieStore
+    .get("movies")
+    ?.value.split("|")
+    .map((s) => JSON.parse(s) as Movie);
 }

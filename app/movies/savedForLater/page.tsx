@@ -1,34 +1,20 @@
 import { getSavedForLater } from "@/app/lib/actions";
 import { Movie } from "@/app/lib/types";
 import SearchForMoviesButton from "@/app/components/SearchForMoviesButton";
-import MoviesHeader from "@/app/components/MoviesHeader";
+import MoviesHeader from "@/app/components/movies/Header";
 import MovieItems from "@/app/components/MovieItems";
 
 export default async function Page() {
-  const savedForLater = await getSavedForLater();
+  const movies = await getSavedForLater();
 
-  if (!savedForLater) {
-    return (
-      <MoviesHeader
-        buttons={[<SearchForMoviesButton />]}
-        subtitle="Nothing saved for later."
-        title="Saved For Later"
-      />
-    );
+  if (!movies) {
+    return null;
   }
 
-  const movies = savedForLater.map((movie) =>
-    JSON.parse(movie),
-  ) as Array<Movie>;
   const totalResults = movies.length;
 
   return (
     <>
-      <MoviesHeader
-        buttons={[<SearchForMoviesButton />]}
-        subtitle={movies.length === 0 ? "Nothing saved for later." : ""}
-        title="Saved For Later"
-      />
       {movies.length && (
         <p className="text-gray-400 mt-2 pl-5">Found {movies.length} results</p>
       )}

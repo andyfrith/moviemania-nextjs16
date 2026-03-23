@@ -1,19 +1,7 @@
 import type { Metadata } from "next";
-import { Orbitron } from "next/font/google";
-
-export const orbitron = Orbitron({ subsets: ["latin"] });
-
+import { nunito_sans } from "@/app/lib/fonts";
 import "./globals.css";
-
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
+import { Providers } from "./components/Providers";
 
 export const metadata: Metadata = {
   title: "Let's go to the movies!",
@@ -27,11 +15,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${orbitron.className} antialiased`}
-        // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${nunito_sans.className} antialiased`}>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

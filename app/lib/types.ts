@@ -1,3 +1,18 @@
+export interface User {
+  name: string;
+  preferences: UserPreferences;
+}
+
+export interface UserPreferences {
+  mood?: Array<string>;
+  genres?: Array<string>;
+  // timeOfDay: Array<string>;
+  // attentionLevel: Array<string>;
+  // goals: Array<string>;
+  // themes: Array<string>;
+  // tones: Array<string>;
+}
+
 export interface Movie {
   Title: string;
   Year: string;

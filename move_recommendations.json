@@ -1,0 +1,20 @@
+{
+  "analysis": {
+    "title": "The Departed",
+    "year": "2006",
+    "summary": "In the gritty streets of South Boston, an undercover cop infiltrates a powerful Irish mob, while simultaneously, a career criminal is planted as a mole within the state police. As both organizations realize they have a 'rat,' a high-stakes race begins for each man to uncover the other's identity before his own cover is blown.",
+    "enjoyReason": "It perfectly combines Martin Scorsese’s kinetic energy with a legendary, unhinged performance by Jack Nicholson, offering the exact kind of high-tension crime saga you love in 'Goodfellas'.",
+    "genres": ["Crime", "Thriller", "Drama"],
+    "themes": ["Identity", "Betrayal", "Corruption", "Father-Son Dynamics"],
+    "tones": ["Intense", "Gritty", "Hard-boiled", "Fast-paced"],
+    "confidence": 0.98
+  },
+  "reasoning": [
+    "Directed by Martin Scorsese, one of the user's top-tier favorite directors, ensuring the visual style and pacing align with their tastes.",
+    "Features Jack Nicholson in a powerhouse role, directly catering to the user's favorite actors list.",
+    "The 'Angry' and 'Bored' mood requires something visceral and fast-paced; the film’s relentless tension and aggressive dialogue provide a perfect emotional outlet and cure for boredom.",
+    "Aligns with the user's love for 'Goodfellas' and 'The Godfather' by exploring the criminal underworld through a complex, character-driven lens.",
+    "The supporting cast includes high-caliber acting that mirrors the intensity found in the works of Daniel Day-Lewis and Al Pacino."
+  ],
+  "recommendationStrategy": "The 'Cathartic Masterpiece' Strategy: By selecting a high-intensity crime epic from a preferred director and featuring a preferred actor, we address 'Boredom' through rapid-fire editing and 'Anger' through the film's gritty, confrontational subject matter."
+}

@@ -1,23 +1,19 @@
-import Pagination from "@/app/components/Pagination";
-import Search from "@/app/components/Search";
-import client from "@/app/lib/omdb/client";
-import { RESULTS_PER_PAGE } from "@/app/lib/constants";
-import { Movie } from "@/app/lib/types";
+import tmdbClient from "@/app/lib/tmdb/client";
 import MoviesHeader from "@/app/components/movies/Header";
-import MovieItems from "../components/MovieItems";
+import MovieItems from "@/app/components/movies/tmdb/MovieItems";
+import Pagination from "@/app/components/movies/tmdb/Pagination";
+import Search from "@/app/components/movies/tmdb/Search";
+
+const RESULTS_PER_PAGE = 20;
 
 export default async function Page(props: {
   searchParams?: Promise<{
     s: string;
     page?: string;
-    y?: string;
-    type?: string;
   }>;
 }) {
   const searchParams = await props.searchParams;
   const query = searchParams?.s || "";
-  const year = searchParams?.y || "";
-  const type = searchParams?.type || "";
   const currentPage = Number(searchParams?.page) || 1;
 
   if (!searchParams || query === "") {
@@ -31,27 +27,15 @@ export default async function Page(props: {
     );
   }
 
-  const moviesSearchResponse = await client.searchMovies(
-    query,
-    currentPage,
-    year,
-    type,
-  );
-  const movies = moviesSearchResponse.Search;
-  const totalResults = Number(moviesSearchResponse.totalResults);
+  const response = await tmdbClient.searchMovies(query, currentPage);
+  const movies = response.results;
+  const totalResults = Number(response.total_results);
 
-  function fitlerOutDuplicates(movies: Array<Movie>) {
-    return Array.from(
-      new Map(movies.map((item) => [item.imdbID, item])).values(),
-    );
-  }
-
-  if (moviesSearchResponse.Error) {
+  if (totalResults === 0) {
     return (
       <>
         <MoviesHeader
-          subtitle={`An error has been returned by the OMDb API:{" "}
-            ${moviesSearchResponse.Error}. Please try another search.`}
+          subtitle={`No movies found. Please try another search.`}
         />
         <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
           <Search placeholder="Search movies..." />
@@ -59,7 +43,6 @@ export default async function Page(props: {
       </>
     );
   }
-
   return (
     <>
       <MoviesHeader />
@@ -73,7 +56,7 @@ export default async function Page(props: {
       </div>
       {movies && movies.length > 0 ? (
         <>
-          <MovieItems movies={fitlerOutDuplicates(movies)} />
+          <MovieItems movies={movies} />
           {totalResults && totalResults > RESULTS_PER_PAGE && (
             <Pagination
               totalPages={Math.ceil(Number(totalResults) / RESULTS_PER_PAGE)}
