@@ -57,7 +57,7 @@ class Client {
       },
     );
 
-    console.log(this.api, this.baseURL, this.imageBaseURL, this.apiKey);
+    // console.log(this.api, this.baseURL, this.imageBaseURL, this.apiKey);
   }
 
   getImageUrl(path: string | null, size: string = "w500"): string | null {

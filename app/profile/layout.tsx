@@ -1,5 +1,6 @@
 import ParticleEffects from "../components/effects/ParticleEffects";
 import ProfileHeader from "../components/profile/ProfileHeader";
+import NavLinks from "../components/movies/NavLinks";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -14,6 +15,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               speed={0.15}
               className="opacity-50"
             />
+            <NavLinks />
             <ProfileHeader />
             {children}
           </div>

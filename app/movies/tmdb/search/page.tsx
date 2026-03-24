@@ -1,5 +1,5 @@
 import tmdbClient from "@/app/lib/tmdb/client";
-import MoviesHeader from "@/app/components/movies/Header";
+import MoviesHeader from "@/app/components/movies/tmdb/Header";
 import MovieItems from "@/app/components/movies/tmdb/MovieItems";
 import Pagination from "@/app/components/movies/tmdb/Pagination";
 import Search from "@/app/components/movies/tmdb/Search";

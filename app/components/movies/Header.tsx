@@ -24,7 +24,7 @@ export default function MoviesHeader({
               </div>
             }
           >
-            {imdbID && <ActionBar imdbID={imdbID} />}
+            {/* {imdbID && <ActionBar imdbID={imdbID} />} */}
           </Suspense>
         </div>
       </div>

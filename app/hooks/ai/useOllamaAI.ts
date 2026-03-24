@@ -1,14 +1,11 @@
-import {
-  generateOllamaMovieAnalysis,
-  generateOllamaMovieWatchAnalysis,
-} from "@/app/lib/actions";
+import { ollamaAI } from "@/app/lib/ai/ollama/service";
 import { useQuery } from "@tanstack/react-query";
 
 export const useMovieAnalysis = (title: string) => {
   return useQuery({
     queryKey: ["movie-analysis", title],
     queryFn: async () => {
-      return generateOllamaMovieAnalysis(title);
+      return ollamaAI.generateMovieAnalysis(title);
     },
   });
 };
@@ -21,7 +18,7 @@ export const useMovieWatchAnalysis = (
   return useQuery({
     queryKey: ["movie-watch-analysis", mood, genres, title],
     queryFn: async () => {
-      return generateOllamaMovieWatchAnalysis(mood, genres, title);
+      return ollamaAI.generateMovieWatchAnalysis({ mood, genres, title });
     },
   });
 };

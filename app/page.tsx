@@ -20,10 +20,10 @@ export default function Home() {
           blockbusters. Your cinematic journey starts here.
         </p>
         <Link
-          href="/movies"
+          href="/movies/tmdb/search"
           className="mt-10 px-8 py-4 bg-yellow-400 text-gray-900 font-bold text-lg uppercase rounded-lg shadow-lg hover:bg-yellow-300 transition-colors duration-300 ease-in-out transform hover:scale-105"
         >
-          Let's go to the movies!
+          Let&apos;s go to the movies!
         </Link>
         <div className="mt-64">
           <Footer />
